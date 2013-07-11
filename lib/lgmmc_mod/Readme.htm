@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<base target="_blank">
+<title>ReadMe</title>
+<meta name="author" content="Zhi-Hua Zhou">
+<meta name="keywords" content="Machine Learning, Multi-Instance Learning, Neural Networks">
+<meta name="generator" content="Namo WebEditor v3.0">
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
+
+<p><FONT size="+3" face="Times New Roman">ReadMe File for LGMMC Package (small data) </FONT></p>
+<h2>&nbsp;</h2>
+<h2><font face="Times New Roman">
+  <hr>
+</font></h2>
+<h2><font face="Times New Roman">LGMMC</font></h2>
+<p style="margin-right:5mm; margin-left:5mm;"><font face="Times New Roman"><b>Description:</b></font><font
+ face="Times New Roman"> LGMMC is a package for maximum margin based clustering. The package includes the MATLAB code of the algorithm LG-MMC. There are two  kinds of codes. One is used for small data with linear and rbf kernel. The other is used for large scale data with linear kernel only. It is 
+very easy to implement LG-MMC in these two setting. You just need to read/run experiment.m file in the 
+
+
+package. Moreover, we include two simple data sets as examples. <br>
+<br> </font><font face="Times New Roman"><b>References:</b></font><font face="Times New Roman"> 
+&nbsp;</font> 
+<ul type="disc">
+    <li style="margin-right:5mm; margin-left:5mm;"><FONT face="Times New Roman"><FONT face="Times New Roman">Y.-F. Li</FONT>, I. W. Tsang, J. T. Kwok, and Z.-H. Zhou. <u><a href="http://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/aistats09.pdf">Tighter and convex maximum margin clustering</a></u>. In: <em>Proceedings of the 12th International Conference on Artificial Intelligence and Statistics (AISTATS'09)</em>, Clearwater Beach, FL, Volume 5 of JMLR:W&amp;CP 5, 2009</FONT> 
+    
+      <font face="Times New Roman" size="3">.</font> 
+</ul>
+<p style="margin-right:5mm; margin-left:5mm;"><font face="Times New Roman"><b>ATTN:</b></font><font
+ face="Times New Roman"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This package 
+is free for academic usage. You can run it at your own risk. For other purposes, 
+please contact Prof. Zhi-Hua Zhou (</font><a href="mailto:zhouzh@nju.edu.cn"><font
+ face="Times New Roman">zhouzh@nju.edu.cn</font></a><font face="Times New Roman">).</font></p>
+<p style="margin-right:5mm; margin-left:5mm;"><font face="Times New Roman"><b>Requirement:</b> The package was developed with MATLAB and C++. To run this code, a package of libsvm should be available. Libsvm can be download from http://www.csie.ntu.edu.tw/~cjlin/libsvm/.</font></p>
+<p style="margin-right:5mm; margin-left:5mm;"><font face="Times New Roman"><b>ATTN2: 
+</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This 
+package was developed by Mr. Yu-Feng Li (<a href="mailto:zhangml@lamda.nju.edu.cn">liyf@lamda.nju.edu.cn</a>). 
+For any problem concerning the code, please feel free to contact Mr. Li.</font><font face="Times New Roman"></font></p>
+<p>&nbsp;</p>
+<h2>Table of Contents</h2>
+<p>=========================</p>
+<h3>- File Description</h3>
+<h3>- Example</h3>
+<p>&nbsp;  </p>
+<h2>File Descriptions</h2>
+<p>===============================</p>
+<p>There are 11 files in LG_MMC_v0.1 package. In particular, six of them are modified from simpleMKL's code, i.e., mklsvm_lgmmc.m, mklsvmupdate_lgmmc.m, sumkbeta_lgmmc.m, costsvmclass_lgmmc.m, gradsvmclass_lgmmc.m and svmclass_lgmmc.m. These files are special for LGMMC only, but the functions of them are exactly the same as simpleMKL's description. In the following, we will just describe the function of the other 5 files. </p>
+<h3>lgmmc.m</h3>
+<p>function [y,ct]= lgmmc(x,opt)</p>
+<h4>Description: With inputting the data <font color="#330099">x</font> and some options <font color="#330099">opt</font>, this function outputs the predicted label vector <font color="#330099">y</font> and the cputime <font color="#330099">ct</font>. </h4>
+<p>&nbsp;</p>
+<h3>LGMMC_train.m</h3>
+<p>function [y,alpha,y_set,iter,ct,beta,obj_set] = LGMMC_train(K0,X,C,ep,iteration)</p>
+<h4>Desciption: With inputting the kernel matrix <font color="#330099">K0</font>, the data <font color="#330099">X</font>, SVM's regularization parameter <font color="#330099">C</font>, the balance parameter <font color="#330099">ep</font> and maximum iteration number <font color="#330099">iteration</font>, this function outputs the predicted label vector <font color="#330099">y</font>, the dual variable<font color="#330099"> alpha</font> in SVM, the generated label set <font color="#330099">y_set</font>, the number of iteration <font color="#330099">iter</font>, the cputime <font color="#330099">ct</font>, the cofficients <font color="#330099">beta</font> of multiple label-kernel and the objective set <font color="#330099">obj_set</font>.</h4>
+<p>&nbsp;</p>
+<h3>Max_Violated_y.m</h3>
+<p>function [y,y_d, y_theta] = Max_Violated_y(alpha,X,ep)</p>
+<h4>Description: With inputting the dual variable <font color="#330099">alpha</font> in SVM, the data <font color="#330099">X</font> and the balance parameter <font color="#330099">ep</font>, this function outputs the most violated label vector <font color="#330099">y</font>, the corresponding dimension <font color="#330099">y_d</font> and the objective value <font color="#330099">y_theta</font>.</h4>
+<p>&nbsp;</p>
+<h3>normalization.m</h3>
+<p>function X = normalization(X)</p>
+<h4>Description: With inputting the data <font color="#330099">X</font>, this function outputs the normalized data <font color="#330099">X</font> (each feature is nomalized to [-1,1]). </h4>
+<p>&nbsp;</p>
+<h3>gaussian_kernel.m</h3>
+<p>function [x,distance_matrix] = gaussian_kernel(x,ratio) </p>
+<h4>Description: With inputting the data <font color="#330099">x</font> and the parameter <font color="#330099">ratio</font> of gaussian kernel, this function outputs the kernel matrix <font color="#330099">x</font> and the distance matrix <font color="#330099">distance_matrix</font>. </h4>
+<p>&nbsp;</p>
+<h2>Example</h2>
+<p>==================================</p>
+<p><strong>experiments.m shows a demo for LGMMC</strong>. </p>
+<font face="Times New Roman"><hr>&nbsp;</font></p>
+</body>
+
+</html>
